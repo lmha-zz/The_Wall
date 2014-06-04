@@ -28,7 +28,7 @@ h4 {
 	padding:30px 0 10px 0;
 }
 h5 {
-	padding: 5px 0 10px 10px;
+	padding: 5px 0 5px 10px;
 	color:dimgrey;
 }
 h6 {
@@ -55,7 +55,7 @@ button {
 	color:green;
 }
 .message {
-	padding: 0 10px 10px 10px;
+	padding: 0 15px 10px 10px;
 }
 .comment_form button {
 	background-color:white;
@@ -75,7 +75,7 @@ button {
 }
 .comments {
 	font-size: 12px;
-	padding: 0 10px;
+	padding: 0 10px 20px 10px;
 	color:dimgrey;
 }
 #header_wrapper p {
