@@ -86,16 +86,24 @@ include('process.php');
 			<?php
 			if($array['user_id'] == $_SESSION['user_id'])
 			{?>
-			<form class="delete_msg_form" action="process.php" method="post">
-				<input type="hidden" name="action" value="delete_msg">
-				<input type="hidden" name="message_id" value="<?php echo $array['id']?>">
-				<button>Delete message</button>
-			</form>
+			
 			<form class="edit_msg_form" action="process.php" method="post">
 				<input type="hidden" name="action" value="edit_msg">
 				<input type="hidden" name="message_id" value="<?php echo $array['id']?>">
 				<button>Edit message</button>
 			</form>
+			<?php
+			$difference = time()-strtotime($array['created_at']);
+			if ($difference < 1800)
+			{
+				?>
+				<form class="delete_msg_form" action="process.php" method="post">
+					<input type="hidden" name="action" value="delete_msg">
+					<input type="hidden" name="message_id" value="<?php echo $array['id']?>">
+					<button>Delete message</button>
+				</form>
+				<?php
+			}	?>
 			<?php
 		}
 		?>

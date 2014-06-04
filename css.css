@@ -78,6 +78,8 @@ button {
 }
 .edit_msg_form button {
 	background-color: grey;
+	float:right;
+	margin: 0 20px 10px 0px;
 }
 .editted_timestamp {
 	font-size:10px;
