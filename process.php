@@ -73,12 +73,14 @@ function register_user($post)
 			switch($key)
 			{
 				case 'first_name':
-				$esc_fname = escape_this_string($_POST['first_name']);
 				case 'last_name':
-				$esc_lname = escape_this_string($_POST['last_name']);
-				if(is_numeric($value))
+				if(!ctype_digit($value))
 				{
 					$_SESSION['error'][] = $key. ' cannot contain numbers.';
+				}
+				if (preg_match("/[\'^£$%&*()}{@#~?><>,|=_+¬-]/", $value))
+				{
+					$_SESSION['error'][] = $key. ' cannot contain special characters.';
 				}
 				break;
 				case 'email':
@@ -121,7 +123,8 @@ function register_user($post)
 
 function login_user($post)
 {
-	$query = "SELECT * FROM users WHERE users.password = '{$post['password']}' AND users.email = '{$post['email']}'";
+	$esc_email = escape_this_string($post['email']);
+	$query = "SELECT * FROM users WHERE users.password = '{$post['password']}' AND users.email = '{$esc_email}'";
 	$user = fetch_all($query);
 	if(count($user) > 0)
 	{
@@ -189,7 +192,8 @@ function grab_all_comments($array)
 }
 function comment_query($msg_id, $usr_id, $comment)
 {
-	$query = "INSERT INTO comments (message_id, user_id, comment, created_at, updated_at) VALUES ('{$msg_id}', '{$usr_id}', '{$comment}', NOW(), NOW())";
+	$esc_comment = escape_this_string($comment);
+	$query = "INSERT INTO comments (message_id, user_id, comment, created_at, updated_at) VALUES ('{$msg_id}', '{$usr_id}', '{$esc_comment}', NOW(), NOW())";
 	run_mysql_query($query);
 	header('Location: main.php');
 	die;
@@ -211,9 +215,11 @@ function delete_message($int)
 }
 function edit_msg_query($post)
 {
-	$query ="UPDATE messages SET message='{$post['edit_msg_box']}', updated_at=NOW() WHERE id = '{$post['message_id']}'";
+	$esc_comment = escape_this_string($post['edit_msg_box']);
+	$query ="UPDATE messages SET message='{$esc_comment}', updated_at=NOW() WHERE id = '{$post['message_id']}'";
 	run_mysql_query($query);
-	$_SESSION['message_editted'][] = "Your message has been successfully editted.";
+	$_SESSION['message_editted'][] = "Your message has been successfully edited.";
 	$_SESSION['edit'] = TRUE;
 }
+
 ?>

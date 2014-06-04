@@ -1,6 +1,13 @@
 <?php
 include('process.php');
 
+if(!isset($_SESSION['user_id']))
+{
+	$_SESSION['error'][] = "Please log in.";
+	header('Location: index.php');
+	die;
+}
+
 ?>
 
 <!doctype html>
