@@ -64,7 +64,7 @@ include('process.php');
 				$date = date_create($comment['created_at']);
 				if ($comment['message_id'] == $array['id']) {
 					?>
-					<h5><?= $name ?> - <?= date_format($date, 'F jS, Y \a\t h:i a') ?></h5>
+					<h5><?= $comment_author ?> - <?= date_format($date, 'F jS, Y \a\t h:i a') ?></h5>
 					<p class="comments"><?= $comment['comment'] ?></p>
 					<?php
 				}
