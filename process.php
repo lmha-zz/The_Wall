@@ -4,9 +4,6 @@ require('connection.php');
 
 date_default_timezone_set("America/Los_Angeles");
 
-// var_dump($_POST);
-// die;
-
 if(isset($_POST['action']) && $_POST['action'] == 'register')
 {
 	register_user($_POST);
@@ -29,6 +26,32 @@ if(isset($_POST['action']) && $_POST['action'] == 'comment')
 		$user = intval($_SESSION['user_id']);
 		comment_query($msg_id, $user, $_POST['comment']);
 	}
+}
+if(isset($_POST['action']) && $_POST['action'] == 'edit_msg')
+{
+	$_SESSION['msg_id'] = $_POST['message_id'];
+	header('location: edit.php');
+	die;
+}
+if(isset($_POST['action']) && $_POST['action'] == 'delete_msg')
+{
+	$_SESSION['msg_id'] = $_POST['message_id'];
+	$msg_id = intval($_SESSION['msg_id']);
+	delete_message($msg_id);
+	header('Location: main.php');
+	die;
+}
+if(isset($_POST['action']) && $_POST['action'] == 'confirm_edit')
+{
+	edit_msg_query($_POST);
+	header('Location: main.php');
+	die;
+}
+if(isset($_POST['action']) && $_POST['action'] == 'cancel_edit')
+{
+	unset($_SESSION['msg_id']);
+	header('Location: main.php');
+	die;
 }
 if(isset($_POST['action']) && $_POST['action'] == 'log_off')
 {
@@ -170,5 +193,27 @@ function comment_query($msg_id, $usr_id, $comment)
 	run_mysql_query($query);
 	header('Location: main.php');
 	die;
+}
+function message_grabber($int)
+{
+	$query = "SELECT message FROM messages WHERE messages.id = '{$int}'";
+	$message = fetch_all($query);
+	foreach ($message as $content) {
+		$text = $content['message'];
+	}
+	return $text;
+}
+function delete_message($int)
+{
+	$query = "DELETE FROM messages WHERE id = '{$int}'";
+	run_mysql_query($query);
+	$_SESSION['message_deleted'][] = "Your message has been successfully deleted.";
+}
+function edit_msg_query($post)
+{
+	$query ="UPDATE messages SET message='{$post['edit_msg_box']}', updated_at=NOW() WHERE id = '{$post['message_id']}'";
+	run_mysql_query($query);
+	$_SESSION['message_editted'][] = "Your message has been successfully editted.";
+	$_SESSION['edit'] = TRUE;
 }
 ?>

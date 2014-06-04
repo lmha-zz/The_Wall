@@ -25,7 +25,7 @@ input {
 	width: 250px;
 }
 h4 {
-	padding:30px 0 10px 0;
+	padding:30px 0 5px 0;
 }
 h5 {
 	padding: 5px 0 5px 10px;
@@ -43,9 +43,10 @@ button {
 	padding:5px;
 	margin:5px;
 	background-color: gainsboro;
+	color: white;
 	box-shadow: 3px 3px 0px 0px black;
 	width: 200px;
-	letter-spacing: 0.5px;
+	letter-spacing: 1px;
 	font-weight: bold;
 }
 .error, .login_error {
@@ -54,15 +55,37 @@ button {
 .success {
 	color:green;
 }
+.msg_delete_success, .msg_edit_success {
+	font-size: 20px;
+	font-weight: bold;
+	font-style: italic;
+	color:green;
+	margin: 0 0 10px 0;
+}
 .message {
 	padding: 0 15px 10px 10px;
 }
 .comment_form button {
 	background-color:white;
 	margin: 0 0 0 658px;
+}
+.delete_msg_form, .edit_msg_form {
+	display: inline; 
+}
+.delete_msg_form button {
+	background-color: red;
+	margin: 0 0 0 448px;
+}
+.edit_msg_form button {
+	background-color: grey;
+}
+.editted_timestamp {
+	font-size:10px;
+	color:grey;
+	padding: 0 0 5px 0;
+}
+.comment_form button {
 	background-color: #2D910D;
-	color:white;
-	letter-spacing: 1px;
 }
 .comment_form textarea {
 	display: block;
@@ -101,13 +124,17 @@ button {
 	background-color: whitesmoke;
 	border-bottom: none;
 }
+#register_wrapper button, #returning_wrapper button {
+	color: black;
+	letter-spacing: 0.5px;
+}
 #returning_wrapper, #content_wrapper {
 	border:2px solid black;
 }
 #message_wrapper {
 	padding: 0 40px 40px 40px;
 }
-#post_wrapper {
+#post_wrapper, #edit_wrapper {
 	padding: 15px 40px;
 }
 #post_form textarea {
@@ -119,8 +146,26 @@ button {
 	border:2px solid black;
 	resize:none;
 }
+#msg_editor_box textarea {
+	display: block;
+	margin: 10px;
+	padding: 5px;
+	width: 835px;
+	height: 150px;
+	border:2px solid black;
+	resize:none;
+}
 #post_form button {
 	margin: 0 0 0 658px;
 	background-color: #265FDD;
-	color:white;
-	letter-spacing: 1px;
+}
+#msg_editor_box, #skip_wrapper {
+	display: inline; 
+}
+#msg_editor_box button {
+	background-color: #2D910D;
+	margin: 0 0 0 448px;
+}
+#skip_wrapper button {
+	background-color: red;
+}
