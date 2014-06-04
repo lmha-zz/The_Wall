@@ -1,0 +1,120 @@
+* {
+	font-family: arial;
+	margin:0;
+	padding:0;
+}
+body{
+	width:1000px;
+	margin: 0 auto;
+}
+h1, #header_wrapper p, #header_wrapper a{
+	display: inline-block;
+}
+h1 {
+	letter-spacing: 2px;
+}
+h2 {
+	padding:0 0 10px 0;
+	letter-spacing: 1px;
+}
+input {
+	display:inline-block;
+	border:2px solid black;
+	padding: 5px;
+	margin: 0 0 3px 10px;
+	width: 250px;
+}
+h4, h5 {
+	padding:15px 0 10px 0;
+}
+h6 {
+	padding: 0 10px;
+}
+label{
+	display:block;
+	margin:5px;
+}
+button {
+	border:2px solid black;
+	padding:5px;
+	margin:5px;
+	background-color: gainsboro;
+	box-shadow: 3px 3px 0px 0px black;
+	width: 200px;
+	letter-spacing: 0.5px;
+	font-weight: bold;
+}
+.error, .login_error {
+	color:red;
+}
+.success {
+	color:green;
+}
+.message {
+	padding: 0 10px 10px 10px;
+}
+.comment_form button {
+	background-color:white;
+	margin: 0 0 0 658px;
+	background-color: #2D910D;
+	color:white;
+	letter-spacing: 1px;
+}
+.comment_form textarea {
+	display: block;
+	margin: 10px;
+	padding: 5px;
+	width: 835px;
+	height: 50px;
+	border:2px solid black;
+	resize:none;
+}
+.comments {
+	font-size: 12px;
+}
+#header_wrapper p {
+	width: 165px;
+	margin: 0 0 0 400px;
+}
+#log_form {
+	display: inline;
+}
+#log_button {
+	display: inline;
+	background-color: transparent;
+	box-shadow: none;
+	border:none;
+	font-size:14px;
+	text-decoration: underline;
+	color:blue;
+	width:70px;
+}
+#header_wrapper, #register_wrapper, #returning_wrapper, #content_wrapper {
+	border:2px solid black;
+	padding:20px;
+	background-color: whitesmoke;
+	border-bottom: none;
+}
+#returning_wrapper, #content_wrapper {
+	border:2px solid black;
+}
+#comment_wrapper {
+	padding: 0 40px;
+}
+#post_wrapper {
+	padding: 15px 40px;
+}
+#post_form textarea {
+	display: block;
+	margin: 10px;
+	padding: 5px;
+	width: 835px;
+	height: 50px;
+	border:2px solid black;
+	resize:none;
+}
+#post_form button {
+	margin: 0 0 0 658px;
+	background-color: #265FDD;
+	color:white;
+	letter-spacing: 1px;
