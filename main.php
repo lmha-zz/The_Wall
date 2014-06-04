@@ -39,7 +39,7 @@ include('process.php');
 				<button>Post a message</button>
 			</form>
 		</div>
-		<div id="comment_wrapper">
+		<div id="message_wrapper">
 		<?php
 		$messages = grab_all_messages();
 		foreach ($messages as $array)
@@ -56,21 +56,20 @@ include('process.php');
 				<textarea name="comment" placeholder="Type your comment here" ></textarea>
 				<button>Post a comment</button>
 			</form>
+			<div class="comment_wrapper">
 			<?php
 			$comments = grab_all_comments($array);
-			// var_dump($comments);
-			// die;
-			if(isset($_SESSION['comments']))
-			{
-				foreach ($_SESSION['comments'] as $comment)
-				{
-					// $date = date_create($comments['created_at']);
+			foreach ($comments as $comment) {
+				$comment_author = grab_user_name($comment);
+				$date = date_create($comment['created_at']);
+				if ($comment['message_id'] == $array['id']) {
 					?>
 					<h5><?= $name ?> - <?= date_format($date, 'F jS, Y \a\t h:i a') ?></h5>
-					<p class="comments"><?= $comment ?></p>
+					<p class="comments"><?= $comment['comment'] ?></p>
 					<?php
 				}
-			}
+			}?>
+			</div><?php
 		}
 		?>
 		</div>

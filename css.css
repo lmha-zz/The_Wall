@@ -24,8 +24,12 @@ input {
 	margin: 0 0 3px 10px;
 	width: 250px;
 }
-h4, h5 {
-	padding:15px 0 10px 0;
+h4 {
+	padding:30px 0 10px 0;
+}
+h5 {
+	padding: 5px 0 10px 10px;
+	color:dimgrey;
 }
 h6 {
 	padding: 0 10px;
@@ -71,6 +75,8 @@ button {
 }
 .comments {
 	font-size: 12px;
+	padding: 0 10px;
+	color:dimgrey;
 }
 #header_wrapper p {
 	width: 165px;
@@ -98,7 +104,7 @@ button {
 #returning_wrapper, #content_wrapper {
 	border:2px solid black;
 }
-#comment_wrapper {
+#message_wrapper {
 	padding: 0 40px;
 }
 #post_wrapper {
