@@ -7,12 +7,6 @@ if(!isset($_SESSION['user_id']))
 	header('Location: index.php');
 	die;
 }
-if(!isset($text))
-{
-	$_SESSION['error'][] = "Please log in.";
-	header('Location: index.php');
-	die;
-}
 
 ?>
 
