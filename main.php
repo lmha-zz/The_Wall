@@ -1,5 +1,5 @@
 <?php
-include('process.php');
+require('process.php');
 
 if(!isset($_SESSION['user_id']))
 {

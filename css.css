@@ -49,6 +49,15 @@ button {
 	letter-spacing: 1px;
 	font-weight: bold;
 }
+.last_name {
+	margin: 0 0 0 11px;
+}
+.email_input {
+	margin: 0 0 0 47px;
+}
+.password_input {
+	margin: 0 0 0 17px;
+}
 .error, .login_error {
 	color:red;
 }

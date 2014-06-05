@@ -1,5 +1,5 @@
 <?php
-session_start();
+require('process.php');
 
 ?>
 
@@ -39,9 +39,9 @@ session_start();
 		<form action="process.php" method="post">
 			<input type="hidden" name="action" value="register">
 			<label>First Name: <input type="text" name="first_name" placeholder="Type your first name here"></label>
-			<label>Last Name: <input type="text" name="last_name" placeholder="Type your last name here"></label>
-			<label>Email: <input type="text" name="email" placeholder="Type your email here"></label>
-			<label>Password: <input type="password" name="password" placeholder="Type your password here"></label>
+			<label>Last Name: <input class="last_name" type="text" name="last_name" placeholder="Type your last name here"></label>
+			<label>Email: <input class="email_input" type="text" name="email" placeholder="Type your email here"></label>
+			<label>Password: <input class="password_input" type="password" name="password" placeholder="Type your password here"></label>
 			<button>Register</button>
 		</form>
 	</div>
@@ -61,8 +61,8 @@ session_start();
 		?>
 		<form action="process.php" method="post">
 			<input type="hidden" name="action" value="login">
-			<label>Email: <input type="text" name="email" placeholder="Type your email here"></label>
-			<label>Password: <input type="password" name="password" placeholder="Type your password here"></label>
+			<label>Email: <input class="email_input" type="text" name="email" placeholder="Type your email here"></label>
+			<label>Password: <input class="password_input" type="password" name="password" placeholder="Type your password here"></label>
 			<button>Login</button>
 		</form>
 	</div>
