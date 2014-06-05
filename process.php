@@ -25,6 +25,14 @@ if(isset($_POST['action']) && $_POST['action'] == 'comment')
 		comment_query($msg_id, $user, $_POST['comment']);
 	}
 }
+if(isset($_POST['action']) && $_POST['action'] == 'delete_com')
+{
+	$_SESSION['comm_id'] = $_POST['comment_id'];
+	$comm_id = intval($_SESSION['comm_id']);
+	delete_comment($comm_id);
+	header('Location: main.php');
+	die;
+}
 if(isset($_POST['action']) && $_POST['action'] == 'edit_msg')
 {
 	$_SESSION['msg_id'] = $_POST['message_id'];

@@ -37,6 +37,7 @@ h6 {
 label{
 	display:block;
 	margin:5px;
+	width: 420px;
 }
 button {
 	border:2px solid black;
@@ -49,14 +50,17 @@ button {
 	letter-spacing: 1px;
 	font-weight: bold;
 }
-.last_name {
-	margin: 0 0 0 11px;
+.first_name_input {
+	margin: 0 0 0 63px;
+}
+.last_name_input {
+	margin: 0 0 0 64px;
 }
 .email_input {
-	margin: 0 0 0 47px;
+	margin: 0 0 0 100px;
 }
 .password_input {
-	margin: 0 0 0 17px;
+	margin: 0 0 0 70px;
 }
 .error, .login_error {
 	color:red;
@@ -64,7 +68,7 @@ button {
 .success {
 	color:green;
 }
-.msg_delete_success, .msg_edit_success {
+.msg_delete_success, .msg_edit_success, .comm_delete_success, .comms_delete_success {
 	font-size: 20px;
 	font-weight: bold;
 	font-style: italic;
@@ -73,10 +77,6 @@ button {
 }
 .message {
 	padding: 0 15px 10px 10px;
-}
-.comment_form button {
-	background-color:white;
-	margin: 0 0 0 658px;
 }
 .delete_msg_form, .edit_msg_form {
 	display: inline; 
@@ -95,8 +95,13 @@ button {
 	color:grey;
 	padding: 0 0 5px 0;
 }
+.delete_com_form {
+	display: inline-block;
+	float:left;
+}
 .comment_form button {
 	background-color: #2D910D;
+	margin: 0 0 0 658px;
 }
 .comment_form textarea {
 	display: block;
@@ -109,8 +114,9 @@ button {
 }
 .comments {
 	font-size: 12px;
-	padding: 0 10px 20px 10px;
+	padding: 0 10px 20px 5px;
 	color:dimgrey;
+	display: inline;
 }
 #header_wrapper p {
 	width: 165px;
@@ -144,6 +150,14 @@ button {
 }
 #message_wrapper {
 	padding: 0 40px 40px 40px;
+}
+#delete_com_button {
+	border:none;
+	float: left;
+	margin: 4px 0 0 0;
+	padding:0;
+	width:10px;
+	height:10px;
 }
 #post_wrapper, #edit_wrapper {
 	padding: 15px 40px;

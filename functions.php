@@ -48,6 +48,11 @@ function register_user($post)
 					$_SESSION['error'][] = 'Password needs to be more than 6 characters long.';
 				}
 				break;
+				case 'confirm_password':
+				if ($post['confirm_password'] != $post['password']) {
+					$_SESSION['error'][] = 'Password needs to be more than 6 characters long.';
+				}
+				break;
 			}
 		}
 	}
@@ -141,6 +146,12 @@ function comment_query($msg_id, $usr_id, $comment)
 	header('Location: main.php');
 	die;
 }
+function delete_comment($int)
+{
+	$query = "DELETE FROM comments WHERE id = '{$int}'";
+	run_mysql_query($query);
+	$_SESSION['comment_deleted'][] = "Your comment has been successfully deleted.";
+}
 function message_grabber($int)
 {
 	$query = "SELECT message FROM messages WHERE messages.id = '{$int}'";
@@ -163,8 +174,8 @@ function delete_message_comments($int)
 	foreach ($comments as $comment) {
 		$query2 = "DELETE FROM comments WHERE id = '{$comment['id']}'";
 		run_mysql_query($query2);
+		$_SESSION['comments_deleted'][] = "All comments, attached to the corresponding message, have been deleted.";
 	}
-	$_SESSION['message_deleted'][] = "All comments attached to corresponding message has been deleted.";
 }
 function edit_msg_query($post)
 {

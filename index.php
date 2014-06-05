@@ -38,10 +38,11 @@ require('process.php');
 		?>
 		<form action="process.php" method="post">
 			<input type="hidden" name="action" value="register">
-			<label>First Name: <input type="text" name="first_name" placeholder="Type your first name here"></label>
-			<label>Last Name: <input class="last_name" type="text" name="last_name" placeholder="Type your last name here"></label>
+			<label>First Name: <input class="first_name_input" type="text" name="first_name" placeholder="Type your first name here"></label>
+			<label>Last Name: <input class="last_name_input" type="text" name="last_name" placeholder="Type your last name here"></label>
 			<label>Email: <input class="email_input" type="text" name="email" placeholder="Type your email here"></label>
 			<label>Password: <input class="password_input" type="password" name="password" placeholder="Type your password here"></label>
+			<label>Confirm Password: <input class="confirm_password" type="password" name="confirm_password" placeholder="Confirm your password here"></label>
 			<button>Register</button>
 		</form>
 	</div>

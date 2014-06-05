@@ -47,6 +47,18 @@ if(!isset($_SESSION['user_id']))
 			}
 			?>
 			<?php
+			if(isset($_SESSION['comments_deleted']))
+			{
+				foreach($_SESSION['comments_deleted'] as $key => $message)
+				{
+					?>
+					<p class="comms_delete_success"><?= $message ?></p>
+					<?php
+					unset($_SESSION['comments_deleted']);
+				}
+			}
+			?>
+			<?php
 			if(isset($_SESSION['message_editted']))
 			{
 				foreach($_SESSION['message_editted'] as $key => $message)
@@ -55,6 +67,18 @@ if(!isset($_SESSION['user_id']))
 					<p class="msg_edit_success"><?= $message ?></p>
 					<?php
 					unset($_SESSION['message_editted']);
+				}
+			}
+			?>
+			<?php
+			if(isset($_SESSION['comment_deleted']))
+			{
+				foreach($_SESSION['comment_deleted'] as $key => $message)
+				{
+					?>
+					<p class="comm_delete_success"><?= $message ?></p>
+					<?php
+					unset($_SESSION['comment_deleted']);
 				}
 			}
 			?>
@@ -92,7 +116,7 @@ if(!isset($_SESSION['user_id']))
 			<p class="message"><?= $array['message'] ?></p>
 			<?php
 			if($array['user_id'] == $_SESSION['user_id'])
-			{?>
+				{?>
 			
 			<form class="edit_msg_form" action="process.php" method="post">
 				<input type="hidden" name="action" value="edit_msg">
@@ -130,16 +154,31 @@ if(!isset($_SESSION['user_id']))
 				if ($comment['message_id'] == $array['id']) {
 					?>
 					<h5><?= $comment_author ?> - <?= date_format($date, 'F jS, Y \a\t h:i a') ?></h5>
-					<p class="comments"><?= $comment['comment'] ?></p>
+					<p class="comments"><?= $comment['comment'] ?>
+						<?php
+						$difference = time()-strtotime($comment['created_at']);
+						if ($difference < 1800)
+						{
+							?>
+							<form class="delete_com_form" action="process.php" method="post">
+								<input type="hidden" name="action" value="delete_com">
+								<input type="hidden" name="comment_id" value="<?php echo $comment['id']?>">
+								<input id="delete_com_button"type="image" src="del_button.png" alt="Login">
+							</form>
+							<?php
+						}	?>
+					</p>
 					<?php
 					unset($_SESSION['comments']);
 
 				}
 			}?>
-			</div><?php
-		}
-		?>
-	</div>
+		</div>
+
+		<?php
+	}
+	?>
+</div>
 </div>
 </body>
 </html>
