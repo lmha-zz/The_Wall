@@ -74,7 +74,7 @@ function register_user($post)
 			{
 				case 'first_name':
 				case 'last_name':
-				if(!ctype_digit($value))
+				if(is_numeric($value))
 				{
 					$_SESSION['error'][] = $key. ' cannot contain numbers.';
 				}
