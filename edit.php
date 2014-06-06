@@ -37,6 +37,18 @@ if(!isset($_SESSION['user_id']))
 		$message = message_grabber($msg_id);
 		?>
 		<div id="edit_wrapper">
+			<?php
+			if(isset($_SESSION['edit_error']))
+			{
+				foreach($_SESSION['edit_error'] as $key => $error)
+				{
+					?>
+					<p class="edit_error"><?= $error ?></p>
+					<?php
+					unset($_SESSION['edit_error']);
+				}
+			}
+			?>
 			<h3>Edit your message</h3>
 			<form id="msg_editor_box"action="process.php" method="post">
 				<input type="hidden" name="action" value="confirm_edit">

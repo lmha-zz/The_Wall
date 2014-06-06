@@ -94,20 +94,18 @@ function post_message($post)
 {
 	foreach ($post as $key => $value)
 	{
-		if(empty($value))
+		if(empty($post['quote']))
 		{
-			$_SESSION['post_error'][] = "Cannot post an empty message. Please type a message and try again.";
-			header('Location: main.php');
-			die;
+			$_SESSION['main_error'][] = "Cannot post an empty message. Please type a message and try again.";
 		}
 		else
 		{
 			$esc_post = escape_this_string($post['quote']);
 			$query = "INSERT INTO messages (user_id, message, created_at, updated_at) VALUES ('{$_SESSION['user_id']}', '{$esc_post}', NOW(), NOW())";
 			run_mysql_query($query);
-			header('Location: main.php');
-			die;
 		}
+		header('Location: main.php');
+		die;
 	}
 }
 function grab_all_messages()
@@ -140,9 +138,16 @@ function grab_all_comments($array)
 }
 function comment_query($msg_id, $usr_id, $comment)
 {
-	$esc_comment = escape_this_string($comment);
-	$query = "INSERT INTO comments (message_id, user_id, comment, created_at, updated_at) VALUES ('{$msg_id}', '{$usr_id}', '{$esc_comment}', NOW(), NOW())";
-	run_mysql_query($query);
+	if(empty($comment))
+	{
+		$_SESSION['main_error'][] = "Cannot post an empty comment. Please type a comment and try again.";
+	}
+	else
+	{
+		$esc_comment = escape_this_string($comment);
+		$query = "INSERT INTO comments (message_id, user_id, comment, created_at, updated_at) VALUES ('{$msg_id}', '{$usr_id}', '{$esc_comment}', NOW(), NOW())";
+		run_mysql_query($query);
+	}
 	header('Location: main.php');
 	die;
 }
@@ -150,7 +155,7 @@ function delete_comment($int)
 {
 	$query = "DELETE FROM comments WHERE id = '{$int}'";
 	run_mysql_query($query);
-	$_SESSION['comment_deleted'][] = "Your comment has been successfully deleted.";
+	$_SESSION['main_success'][] = "Your comment has been successfully deleted.";
 }
 function message_grabber($int)
 {
@@ -165,7 +170,7 @@ function delete_message($int)
 {
 	$query = "DELETE FROM messages WHERE id = '{$int}'";
 	run_mysql_query($query);
-	$_SESSION['message_deleted'][] = "Your message has been successfully deleted.";
+	$_SESSION['main_success'][] = "Your message has been successfully deleted.";
 }
 function delete_message_comments($int)
 {
@@ -174,16 +179,26 @@ function delete_message_comments($int)
 	foreach ($comments as $comment) {
 		$query2 = "DELETE FROM comments WHERE id = '{$comment['id']}'";
 		run_mysql_query($query2);
-		$_SESSION['comments_deleted'][] = "All comments, attached to the corresponding message, have been deleted.";
+		$_SESSION['main_success'][] = "All comments, attached to the corresponding message, have been deleted.";
 	}
 }
 function edit_msg_query($post)
 {
-	$esc_comment = escape_this_string($post['edit_msg_box']);
-	$query ="UPDATE messages SET message='{$esc_comment}', updated_at=NOW() WHERE id = '{$post['message_id']}'";
-	run_mysql_query($query);
-	$_SESSION['message_editted'][] = "Your message has been successfully edited.";
-	$_SESSION['edit'] = TRUE;
+	if (empty($post['edit_msg_box'])) {
+		$_SESSION['edit_error'][] = "Cannot edit your message into a blank message. Please edit your message to have content and try again.";
+		header('location: edit.php');
+		die;
+	}
+	else
+	{
+		$esc_comment = escape_this_string($post['edit_msg_box']);
+		$query ="UPDATE messages SET message='{$esc_comment}', updated_at=NOW() WHERE id = '{$post['message_id']}'";
+		run_mysql_query($query);
+		$_SESSION['main_success'][] = "Your message has been successfully edited.";
+		$_SESSION['edit'] = TRUE;
+		header("location: main.php");
+		die;
+	}
 }
 
 ?>

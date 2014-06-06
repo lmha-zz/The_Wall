@@ -35,61 +35,30 @@ if(!isset($_SESSION['user_id']))
 	<div id="content_wrapper">
 		<div id="post_wrapper">
 			<?php
-			if(isset($_SESSION['message_deleted']))
+			if(isset($_SESSION['main_error']))
 			{
-				foreach($_SESSION['message_deleted'] as $key => $message)
+				foreach($_SESSION['main_error'] as $key => $message)
 				{
 					?>
-					<p class="msg_delete_success"><?= $message ?></p>
+					<p class="main_error"><?= $message ?></p>
 					<?php
-					unset($_SESSION['message_deleted']);
+					unset($_SESSION['main_error']);
 				}
 			}
 			?>
 			<?php
-			if(isset($_SESSION['comments_deleted']))
+			if(isset($_SESSION['main_success']))
 			{
-				foreach($_SESSION['comments_deleted'] as $key => $message)
+				foreach($_SESSION['main_success'] as $key => $message)
 				{
 					?>
-					<p class="comms_delete_success"><?= $message ?></p>
+					<p class="main_success"><?= $message ?></p>
 					<?php
-					unset($_SESSION['comments_deleted']);
-				}
-			}
-			?>
-			<?php
-			if(isset($_SESSION['message_editted']))
-			{
-				foreach($_SESSION['message_editted'] as $key => $message)
-				{
-					?>
-					<p class="msg_edit_success"><?= $message ?></p>
-					<?php
-					unset($_SESSION['message_editted']);
-				}
-			}
-			?>
-			<?php
-			if(isset($_SESSION['comment_deleted']))
-			{
-				foreach($_SESSION['comment_deleted'] as $key => $message)
-				{
-					?>
-					<p class="comm_delete_success"><?= $message ?></p>
-					<?php
-					unset($_SESSION['comment_deleted']);
+					unset($_SESSION['main_success']);
 				}
 			}
 			?>
 			<h3>Post a message</h3>
-			<?php
-			if(isset($_SESSION['post_error']))
-			{
-				?>
-				<p class="error"><?= $_SESSION['post_error'] ?></p>
-				<?php
-			}?>
 		<form id="post_form" action="process.php" method="post">
 			<input type="hidden" name="action" value="message">
 			<textarea id="quote_box" name="quote" placeholder="Type your quote here" ></textarea>
@@ -144,7 +113,7 @@ if(!isset($_SESSION['user_id']))
 		<form class="comment_form" action="process.php" method="post">
 			<input type='hidden' name='action' value='comment'>
 			<input type="hidden" name="message_id" value='<?php echo $array['id'] ?>'>
-			<textarea name="comment" placeholder="Type your comment here" ></textarea>
+			<textarea name="comment" placeholder="Type your comment here"></textarea>
 			<button>Post a comment</button>
 		</form>
 		<div class="comment_wrapper">
