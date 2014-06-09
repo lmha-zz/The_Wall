@@ -67,6 +67,7 @@ if(!isset($_SESSION['user_id']))
 	</div>
 	<div id="message_wrapper">
 		<?php
+		// edit message display to incoorporate the joined table versus two seperate queries
 		$messages = grab_all_messages();
 		foreach ($messages as $array)
 		{
@@ -118,6 +119,7 @@ if(!isset($_SESSION['user_id']))
 		</form>
 		<div class="comment_wrapper">
 			<?php
+			// edit comment display to incoorporate the joined table versus two seperate queries
 			$comments = grab_all_comments($array);
 			foreach ($comments as $comment)
 			{

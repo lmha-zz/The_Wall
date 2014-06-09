@@ -108,6 +108,10 @@ function post_message($post)
 		die;
 	}
 }
+
+// can combine grab_all_messages and grab_user_name by doing a joined query
+// $query = "SELECT messages.*, messages.id AS message_id, CONCAT(users.first_name, ' ', users.last_name) AS user_name FROM messages JOIN users ON messages.user_id = users.id ORDER BY messages.created_at DESC;"
+
 function grab_all_messages()
 {
 	$_SESSION['message'] = array();
@@ -121,6 +125,10 @@ function grab_user_name($array)
 	$user_name = fetch_record($query2);
 	return $user_name['name'];
 }
+
+// can combine grab_all_comments and grab_user_name by doing a joined query
+// $query = "SELECT comments.*, comments.id AS comment_id, CONCAT(users.first_name, ' ', users.last_name) AS user_name FROM comments JOIN users ON comments.user_id = users.id ORDER BY comments.created_at ASC;"
+
 function grab_all_comments($array)
 {
 	$query = "SELECT * FROM comments WHERE comments.message_id = '{$array['id']}' ORDER BY comments.created_at ASC";
